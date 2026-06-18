@@ -1381,7 +1381,7 @@ className={`absolute z-30 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 flex-
             }
 
             const canBeTW =
-              JSON.stringify(selectedPlayer).toLowerCase().includes("tw");
+              JSON.stringify(selectedPlayer).toLowerCase().includes("TW");
             if (!canBeTW) {
               alert("Dieser Spieler hat keine TW Rolle.");
               return;
