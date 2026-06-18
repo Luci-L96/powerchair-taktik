@@ -1294,7 +1294,7 @@ export default function Home() {
   setSelectedId(player.id);
 
   if (player.role === "TW") {
-    setSelectedTw(player.id);
+    setSelectedTW(player.id);
   }
 
   setDraggingId(player.id);
@@ -1315,7 +1315,6 @@ className={`absolute z-30 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 flex-
                 >
                   <span>{player.number || player.name}</span>
                   
-
 
 {player.team === "green" && <span>{player.name}</span>}
                 </button>
