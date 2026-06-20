@@ -1232,10 +1232,13 @@ export default function Home() {
             setDraggingId(null);
           }}
           onPointerDown={(e) => {
-            if (drawMode) {
-              startDrawing(e);
-            }
-          }}
+  e.currentTarget.setPointerCapture(e.pointerId);
+
+  if (drawMode) {
+    startDrawing(e);
+  }
+}}
+style={{ touchAction: "none" }}
           className={`relative aspect-[16/9] w-full overflow-hidden rounded-3xl border-4 border-slate-800 bg-[#eee7d8] ${
             pointsRuleActive && totalPoints > 12 ? "bg-red-200" : ""
           }`}
@@ -1307,7 +1310,7 @@ className={`absolute z-30 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 flex-
   selected ? "ring-4 ring-yellow-300 scale-110" : ""
                   } ${player.team === "green" ? "border-green-900" : "border-red-600"}`}
                   style={{
-  touchAction: "none",
+  touchAction: "none", 
   left: `${player.x}%`,
   top: `${player.y}%`,
   background: isOwnTW
