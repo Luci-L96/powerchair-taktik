@@ -1215,23 +1215,23 @@ export default function Home() {
         </div>
 
         <div
-          onMouseMove={(e) => {
+          onPointerMove={(e) => {
             if (drawMode) {
               updateDrawing(e);
             } else {
               movePlayer(e);
             }
           }}
-          onMouseUp={() => {
+          onPointerUp={() => {
             setDraggingId(null);
             if (drawMode) {
               finishDrawing();
             }
           }}
-          onMouseLeave={() => {
+          onPointerLeave={() => {
             setDraggingId(null);
           }}
-          onMouseDown={(e) => {
+          onPointerDown={(e) => {
             if (drawMode) {
               startDrawing(e);
             }
@@ -1289,8 +1289,10 @@ export default function Home() {
 <button
   key={player.id}
   onDoubleClick={() => setInfoPlayer(player)}
-  onMouseDown={(e) => {
+  onPointerDown={(e) => {
   e.stopPropagation();
+  e.currentTarget.setPointerCapture(e.pointerId);
+
   setSelectedId(player.id);
 
   if (player.role === "TW") {
@@ -1301,12 +1303,14 @@ export default function Home() {
 }}
 
 className={`absolute z-30 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border-4 text-xs font-bold text-white shadow-lg ${
-                    selected ? "ring-4 ring-yellow-300 scale-110" : ""
+                   
+  selected ? "ring-4 ring-yellow-300 scale-110" : ""
                   } ${player.team === "green" ? "border-green-900" : "border-red-600"}`}
                   style={{
-                    left: `${player.x}%`,
-                    top: `${player.y}%`,
-                    background: isOwnTW
+  touchAction: "none",
+  left: `${player.x}%`,
+  top: `${player.y}%`,
+  background: isOwnTW
                       ? `linear-gradient(135deg, ${ownColor} 50%, #dc2626 50%)`
                       : player.team === "green"
                       ? ownColor
